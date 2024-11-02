@@ -11,7 +11,11 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 COPY . .
 
+RUN pip install --upgrade pip
+
 # 依存パッケージをインストール
+RUN pip install -r requirements.txt -i https://pypi.doubanio.com/simple
+
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Flaskアプリを起動

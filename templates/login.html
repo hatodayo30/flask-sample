@@ -39,12 +39,16 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="centered">
         <h1>ログイン</h1>
-        <form method="POST">
+        <form method="POST" action="{{ url_for('login') }}">
             <label for="email">E-mail:</label>
             <input type="email" name="email" required>
             

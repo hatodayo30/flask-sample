@@ -54,13 +54,14 @@ class PostModel:
             return False
         finally:
             conn.close()
-            
+
     @staticmethod
     def get_user_by_email(email):
         conn = DB.getConnection()
-        cursor = conn.cursor(dictionary=True)
+        cursor = conn.cursor(pymysql.cursors.DictCursor)  # ディクショナリ形式で返す
         query = "SELECT * FROM posts WHERE email = %s"
         cursor.execute(query, (email,))
+        
         user = cursor.fetchone()
         cursor.close()
         conn.close()
