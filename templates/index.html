@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App with MySQL and Cookies</title>
+</head>
+<body>
+    <h1>相馬アプリ</h1>
+    <a href="/create" role="button">新規作成画面</a>
+    <form method="POST">
+        <input type="text" name="user_input" required>
+        <input type="submit" value="新規登録">
+    </form>
+
+    <h2>Messages:</h2>
+    <ul>
+        {% for post in posts %}
+        <li>{{ post[0] }}</li>
+        {% endfor %}
+    </ul>
+
+    {% if last_post %}
+    <p>Your last post was: {{ last_post }}</p>
+    {% endif %}
+</body>
+</html>
