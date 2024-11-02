@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, make_response # type: ignore
-import mysql.connector # type: ignore
+from flask import Flask, render_template, request, redirect, url_for, make_response  # type: ignore
+import mysql.connector  # type: ignore
 import os
 
 app = Flask(__name__)
@@ -44,9 +44,7 @@ def index():
 
     return render_template('index.html', posts=posts, last_post=last_post)
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5002)
-
+# 新規作成画面
 @app.route('/create', methods=['GET', 'POST'])
 def create():
     message = ''
@@ -54,13 +52,14 @@ def create():
     cursor = conn.cursor()
 
     if request.method == 'POST':
-        user_input = request.form['user_input']
+        title = request.form['title']
+        body = request.form['bpdy']
         # 入力データをデータベースに挿入
-        cursor.execute('INSERT INTO posts (content) VALUES (%s)', (user_input,))
+        cursor.execute('INSERT INTO posts (content) VALUES (%s)', (title,))
         conn.commit()
         # Cookieに保存
         resp = make_response(redirect(url_for('index')))
-        resp.set_cookie('last_post', user_input)
+        resp.set_cookie('last_post', title)
         return resp
 
     # データベースから投稿データを取得
@@ -72,4 +71,7 @@ def create():
     cursor.close()
     conn.close()
 
-    return render_template('create.html', posts=posts, last_post=last_post)  # 修正：crate.html -> create.html
+    return render_template('create.html', posts=posts, last_post=last_post)
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5002)
