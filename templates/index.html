@@ -13,6 +13,10 @@
         <input type="submit" value="入力">
     </form>
 
+    <a href="{{ url_for('login') }}" style="padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">
+        ログイン
+    </a>
+    
     <h2>入力履歴:</h2>
     <ul>
         {% for post in posts %}

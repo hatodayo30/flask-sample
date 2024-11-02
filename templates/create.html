@@ -4,15 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新規登録</title>
+    <style>
+        /* ページ全体を中央に配置 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        /* コンテンツを縦方向に並べる */
+        .container {
+            text-align: center;
+        }
+        /* フォームのスタイル調整 */
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label, input {
+            margin: 5px 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>新規登録</h1>
-    <form method="POST">
-        <label for="email">E-mail:</label>
-        <input type="email" name="email" required>
-        <label for="password">Password:</label>
-        <input type="password" name="password" required>
-        <input type="submit" value="登録">
-    </form>
+    <div class="container">
+        <h1>新規登録</h1>
+        <form method="POST">
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" name="password" required>
+            <input type="submit" value="登録">
+        </form>
+    </div>
 </body>
 </html>
