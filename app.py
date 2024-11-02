@@ -20,7 +20,6 @@ def get_db_connection():
 # ホームページでデータを投稿・表示
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    message = ''
     conn = get_db_connection()
     cursor = conn.cursor()
 
@@ -35,7 +34,7 @@ def index():
         return resp
 
     # データベースから投稿データを取得
-    cursor.execute('SELECT content FROM posts')
+    cursor.execute('SELECT email, password FROM posts')
     posts = cursor.fetchall()
     
     last_post = request.cookies.get('last_post')
@@ -45,35 +44,27 @@ def index():
 
     return render_template('index.html', posts=posts, last_post=last_post)
 
-# 新規作成画面
+# 新規登録画面
 @app.route('/create', methods=['GET', 'POST'])
 def create():
-    message = ''
     conn = get_db_connection()
     cursor = conn.cursor()
 
     if request.method == 'POST':
-        title = request.form['title']
-        body = request.form['body']
+        email = request.form['email']
+        password = request.form['password']
         # 入力データをデータベースに挿入
-        cursor.execute('INSERT INTO posts (title, content) VALUES (%s, %s)', (title, body))
+        cursor.execute('INSERT INTO posts (email, password) VALUES (%s, %s)', (email, password))
         conn.commit()
         # Cookieに保存
         resp = make_response(redirect(url_for('index')))
-        resp.set_cookie('last_post', title)
+        resp.set_cookie('last_post', email)
         return resp
-
-
-    # データベースから投稿データを取得
-    cursor.execute('SELECT content FROM posts')
-    posts = cursor.fetchall()
-    
-    last_post = request.cookies.get('last_post')
 
     cursor.close()
     conn.close()
 
-    return render_template('create.html', posts=posts, last_post=last_post)
+    return render_template('create.html')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5002)

@@ -3,48 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask App with MySQL and Cookies</title>
-    <style>
-        /* タイトルとフォームの中央揃え */
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 50px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        /* フォームのスタイル */
-        form {
-            display: flex;
-            flex-direction: column;
-            width: 300px;
-            margin-top: 20px;
-        }
-
-        label, input[type="text"], input[type="submit"] {
-            margin-bottom: 10px;
-        }
-
-        input[type="submit"] {
-            cursor: pointer;
-        }
-    </style>
+    <title>新規登録</title>
 </head>
 <body>
-    <div class="container">
-        <h1>新規登録</h1>
-        <form method="POST">
-            <label for="title">e-mail</label>
-            <input type="text" name="title" required>
-            <label for="body">password</label>
-            <input type="text" name="body">
-            <input type="submit" value="新規登録">
-        </form>
-    </div>
-   
+    <h1>新規登録</h1>
+    <form method="POST">
+        <label for="email">E-mail:</label>
+        <input type="email" name="email" required>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+        <input type="submit" value="登録">
+    </form>
 </body>
 </html>
