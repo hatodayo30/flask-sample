@@ -4,18 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flask App with MySQL and Cookies</title>
+    <style>
+        .centered {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>相馬アプリ</h1>
-    <a href="/create" role="button">押す🫸</a>
-    <form method="POST">
+    <h1 style="text-align: center;">相馬アプリ</h1>
+    
+    <div class="centered">
+        <!-- 押すボタン -->
+        <a href="/create" role="button" class="button">押す🫸</a>
+        
+        <!-- ログインボタン -->
+        <a href="{{ url_for('login') }}" class="button">ログイン</a>
+    </div>
+    
+    <form method="POST" style="text-align: center; margin-top: 20px;">
         <input type="text" name="user_input" required>
         <input type="submit" value="入力">
     </form>
-
-    <a href="{{ url_for('login') }}" style="padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">
-        ログイン
-    </a>
     
     <h2>入力履歴:</h2>
     <ul>
