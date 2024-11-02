@@ -1,3 +1,4 @@
+from ast import Return
 from flask import Flask, render_template, request, redirect, url_for, make_response  # type: ignore
 import mysql.connector  # type: ignore
 import os
@@ -53,14 +54,15 @@ def create():
 
     if request.method == 'POST':
         title = request.form['title']
-        body = request.form['bpdy']
+        body = request.form['body']
         # 入力データをデータベースに挿入
-        cursor.execute('INSERT INTO posts (content) VALUES (%s)', (title,))
+        cursor.execute('INSERT INTO posts (title, content) VALUES (%s, %s)', (title, body))
         conn.commit()
         # Cookieに保存
         resp = make_response(redirect(url_for('index')))
         resp.set_cookie('last_post', title)
         return resp
+
 
     # データベースから投稿データを取得
     cursor.execute('SELECT content FROM posts')

@@ -7,13 +7,13 @@
 </head>
 <body>
     <h1>相馬アプリ</h1>
-    <a href="/create" role="button">新規作成画面</a>
+    <a href="/create" role="button">押す🫸</a>
     <form method="POST">
         <input type="text" name="user_input" required>
-        <input type="submit" value="新規登録">
+        <input type="submit" value="入力">
     </form>
 
-    <h2>Messages:</h2>
+    <h2>入力履歴:</h2>
     <ul>
         {% for post in posts %}
         <li>{{ post[0] }}</li>
